@@ -32,7 +32,7 @@
       "changeDescriptions": [
         {
           "name": "user_json_instruction_chinese",
-          "description": "将第二轮用户消息中的 JSON 输出格式说明从英文改成中文。"
+          "description": "将 messages[1]、messages[7]、messages[18] 中的 JSON 输出格式说明从英文改成中文。"
         }
       ]
     },
@@ -63,7 +63,7 @@
         },
         {
           "name": "user_json_instruction_chinese",
-          "description": "将第二轮用户消息中的 JSON 输出格式说明从英文改成中文。"
+          "description": "将 messages[1]、messages[7]、messages[18] 中的 JSON 输出格式说明从英文改成中文。"
         }
       ]
     },
@@ -95,7 +95,7 @@
       "changeDescriptions": [
         {
           "name": "user_json_instruction_chinese",
-          "description": "将第二轮用户消息中的 JSON 输出格式说明从英文改成中文。"
+          "description": "将 messages[1]、messages[7]、messages[18] 中的 JSON 输出格式说明从英文改成中文。"
         },
         {
           "name": "reasoning_few_shot_chinese",
@@ -118,7 +118,7 @@
         },
         {
           "name": "user_json_instruction_chinese",
-          "description": "将第二轮用户消息中的 JSON 输出格式说明从英文改成中文。"
+          "description": "将 messages[1]、messages[7]、messages[18] 中的 JSON 输出格式说明从英文改成中文。"
         },
         {
           "name": "reasoning_few_shot_chinese",
@@ -131,66 +131,66 @@
     "baseline": {
       "okCount": 20,
       "failedCount": 0,
-      "minEnglishRatio": 0.3163,
-      "maxEnglishRatio": 0.992,
-      "avgEnglishRatio": 0.8296,
-      "mixedCount": 20
+      "chineseCount": 5,
+      "englishCount": 15,
+      "mixedCount": 0,
+      "emptyCount": 0
     },
     "change_1_reasoning_content_system_constraint": {
       "okCount": 20,
       "failedCount": 0,
-      "minEnglishRatio": 0,
-      "maxEnglishRatio": 1,
-      "avgEnglishRatio": 0.7255,
-      "mixedCount": 19
+      "chineseCount": 4,
+      "englishCount": 16,
+      "mixedCount": 0,
+      "emptyCount": 0
     },
     "change_2_user_json_instruction_chinese": {
       "okCount": 20,
       "failedCount": 0,
-      "minEnglishRatio": 0.2346,
-      "maxEnglishRatio": 0.9922,
-      "avgEnglishRatio": 0.8709,
-      "mixedCount": 20
+      "chineseCount": 6,
+      "englishCount": 14,
+      "mixedCount": 0,
+      "emptyCount": 0
     },
     "change_3_reasoning_few_shot_chinese": {
       "okCount": 20,
       "failedCount": 0,
-      "minEnglishRatio": 0.265,
-      "maxEnglishRatio": 0.5238,
-      "avgEnglishRatio": 0.3973,
-      "mixedCount": 20
+      "chineseCount": 20,
+      "englishCount": 0,
+      "mixedCount": 0,
+      "emptyCount": 0
     },
     "change_1_2": {
       "okCount": 20,
       "failedCount": 0,
-      "minEnglishRatio": 0,
-      "maxEnglishRatio": 1,
-      "avgEnglishRatio": 0.662,
-      "mixedCount": 19
+      "chineseCount": 7,
+      "englishCount": 13,
+      "mixedCount": 0,
+      "emptyCount": 0
     },
     "change_1_3": {
       "okCount": 20,
       "failedCount": 0,
-      "minEnglishRatio": 0.1782,
-      "maxEnglishRatio": 0.5403,
-      "avgEnglishRatio": 0.4011,
-      "mixedCount": 20
+      "chineseCount": 20,
+      "englishCount": 0,
+      "mixedCount": 0,
+      "emptyCount": 0
     },
     "change_2_3": {
       "okCount": 20,
       "failedCount": 0,
-      "minEnglishRatio": 0,
-      "maxEnglishRatio": 0.597,
-      "avgEnglishRatio": 0.3533,
-      "mixedCount": 19
+      "chineseCount": 20,
+      "englishCount": 0,
+      "mixedCount": 0,
+      "emptyCount": 0
     },
     "chinese_cognitive_few_shot": {
       "okCount": 20,
       "failedCount": 0,
-      "minEnglishRatio": 0.1569,
-      "maxEnglishRatio": 0.645,
-      "avgEnglishRatio": 0.4431,
-      "mixedCount": 20
+      "chineseCount": 20,
+      "englishCount": 0,
+      "mixedCount": 0,
+      "emptyCount": 0
     }
   },
   "caseOutputPaths": [
