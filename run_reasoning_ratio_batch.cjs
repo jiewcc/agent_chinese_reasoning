@@ -33,24 +33,90 @@ const CASES = [
   },
 ];
 
+const TECHNICAL_LEADING_TERMS = new Set([
+  "API",
+  "CJK",
+  "ID",
+  "JSON",
+  "RFC8259",
+  "ROI",
+  "SSE",
+]);
+
+function isCjkChar(char) {
+  return /[\u4e00-\u9fff]/.test(char);
+}
+
+function isAsciiLetter(char) {
+  return /[A-Za-z]/.test(char);
+}
+
+function shouldSkipLeadingAsciiToken(token) {
+  return (
+    TECHNICAL_LEADING_TERMS.has(token) ||
+    /[_-]/.test(token) ||
+    /[a-z][A-Z]/.test(token) ||
+    /^[A-Z0-9]{2,}$/.test(token)
+  );
+}
+
+function firstLanguageChars(text, limit = 2) {
+  const chars = [];
+  let i = 0;
+  while (i < text.length && chars.length < limit) {
+    const char = text[i];
+
+    if (char === "`") {
+      const end = text.indexOf("`", i + 1);
+      i = end === -1 ? i + 1 : end + 1;
+      continue;
+    }
+
+    if (isCjkChar(char)) {
+      chars.push(char);
+      i += 1;
+      continue;
+    }
+
+    if (isAsciiLetter(char)) {
+      const match = text.slice(i).match(/^[A-Za-z][A-Za-z0-9_-]*/);
+      const token = match ? match[0] : char;
+      if (chars.length === 0 && shouldSkipLeadingAsciiToken(token)) {
+        i += token.length;
+        continue;
+      }
+      for (const tokenChar of token) {
+        if (isAsciiLetter(tokenChar)) chars.push(tokenChar);
+        if (chars.length >= limit) break;
+      }
+      i += token.length;
+      continue;
+    }
+
+    i += 1;
+  }
+  return chars;
+}
+
+function languageFromChars(chars) {
+  const cjk = chars.filter(isCjkChar).length;
+  const asciiLetters = chars.filter(isAsciiLetter).length;
+  if (chars.length === 0) return "empty";
+  if (cjk > asciiLetters) return "chinese";
+  if (asciiLetters > cjk) return "english";
+  return "mixed";
+}
+
 function analyze(text) {
-  const asciiLetters = (text.match(/[A-Za-z]/g) || []).length;
-  const cjk = (text.match(/[\u4e00-\u9fff]/g) || []).length;
-  const englishWords = text.match(/[A-Za-z][A-Za-z_-]{2,}/g) || [];
-  const englishSentences = text
-    .split(/[\n。！？]/)
-    .map((line) => line.trim())
-    .filter((line) => /[A-Za-z]{3,}/.test(line) && /[a-z][\s,.;:)]/.test(line)).length;
-  const englishRatio = asciiLetters / Math.max(1, asciiLetters + cjk);
+  const leadingLanguageChars = firstLanguageChars(text);
+  const language = languageFromChars(leadingLanguageChars);
 
   return {
     chars: text.length,
-    cjk,
-    asciiLetters,
-    englishRatio: Number(englishRatio.toFixed(4)),
-    englishSentenceCount: englishSentences,
-    englishWordsSample: Array.from(new Set(englishWords)).slice(0, 20),
-    mixed: englishRatio > 0.05 || englishSentences > 0,
+    leadingLanguageChars: leadingLanguageChars.join(""),
+    language,
+    isChinese: language === "chinese",
+    isEnglish: language === "english",
   };
 }
 
@@ -138,19 +204,16 @@ function parseResponse(response) {
 
 function summarize(rows) {
   const okRows = rows.filter((row) => row.ok && row.reasoningAnalysis);
-  const ratios = okRows.map((row) => row.reasoningAnalysis.englishRatio);
-  if (ratios.length === 0) {
+  if (okRows.length === 0) {
     return { okCount: 0, failedCount: rows.length };
   }
-  const sorted = ratios.slice().sort((a, b) => a - b);
-  const sum = ratios.reduce((total, value) => total + value, 0);
   return {
     okCount: okRows.length,
     failedCount: rows.length - okRows.length,
-    min: sorted[0],
-    max: sorted[sorted.length - 1],
-    avg: Number((sum / ratios.length).toFixed(4)),
-    mixedCount: okRows.filter((row) => row.reasoningAnalysis.mixed).length,
+    chineseCount: okRows.filter((row) => row.reasoningAnalysis.language === "chinese").length,
+    englishCount: okRows.filter((row) => row.reasoningAnalysis.language === "english").length,
+    mixedCount: okRows.filter((row) => row.reasoningAnalysis.language === "mixed").length,
+    emptyCount: okRows.filter((row) => row.reasoningAnalysis.language === "empty").length,
   };
 }
 
@@ -225,7 +288,7 @@ async function main() {
       results.push(row);
       if (row.ok) {
         console.log(
-          `${caseInfo.name}\t${i}\tenglishRatio=${row.reasoningAnalysis.englishRatio}\tmixed=${row.reasoningAnalysis.mixed}\tchars=${row.reasoningAnalysis.chars}\tstatus=${row.status}`
+          `${caseInfo.name}\t${i}\tlanguage=${row.reasoningAnalysis.language}\tleading=${row.reasoningAnalysis.leadingLanguageChars || ""}\tchars=${row.reasoningAnalysis.chars}\tstatus=${row.status}`
         );
         console.log("reasoning_content:");
         console.log(row.reasoningContent || "");
