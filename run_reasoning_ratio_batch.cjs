@@ -24,6 +24,13 @@ const CASES = [
       process.env.CHINESE_BODY ||
       "test_request_bodies/after_read_skill_failures_chinese_cognitive_few_shot.json",
   },
+  {
+    name: "chinese_cognitive_few_shot_first_turn",
+    path:
+      process.env.CHINESE_BODY ||
+      "test_request_bodies/after_read_skill_failures_chinese_cognitive_few_shot.json",
+    transform: "first_turn",
+  },
 ];
 
 function analyze(text) {
@@ -147,8 +154,26 @@ function summarize(rows) {
   };
 }
 
-async function runOne(caseInfo, iteration) {
+function buildRequestBody(caseInfo) {
   const body = JSON.parse(fs.readFileSync(caseInfo.path, "utf8"));
+  if (caseInfo.transform !== "first_turn") return body;
+
+  const systemMessage = body.messages.find((message) => message.role === "system");
+  const userMessages = body.messages.filter((message) => message.role === "user");
+  const lastUserMessage = userMessages[userMessages.length - 1];
+
+  if (!systemMessage || !lastUserMessage) {
+    throw new Error(`Cannot build first_turn body from ${caseInfo.path}`);
+  }
+
+  return {
+    ...body,
+    messages: [systemMessage, lastUserMessage],
+  };
+}
+
+async function runOne(caseInfo, iteration) {
+  const body = buildRequestBody(caseInfo);
   const startedAt = Date.now();
   try {
     const response = await requestText(API_URL, body);
@@ -192,6 +217,9 @@ async function main() {
   for (const caseInfo of CASES) {
     console.log(`\n# ${caseInfo.name}`);
     console.log(`request_body=${caseInfo.path}`);
+    if (caseInfo.transform) {
+      console.log(`transform=${caseInfo.transform}`);
+    }
     for (let i = 1; i <= REPEAT; i += 1) {
       const row = await runOne(caseInfo, i);
       results.push(row);
