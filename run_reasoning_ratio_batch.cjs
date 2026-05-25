@@ -160,17 +160,18 @@ async function runOne(caseInfo, iteration) {
       parseError = error && error.message ? error.message : String(error);
     }
     const reasoningAnalysis = analyze(parsed.reasoning);
-    return {
-      caseName: caseInfo.name,
-      iteration,
-      status: response.status,
-      ok: response.status >= 200 && response.status < 300 && !parseError,
-      durationMs: Date.now() - startedAt,
-      finishReason: parsed.finishReason,
-      reasoningAnalysis,
-      reasoningPreview: parsed.reasoning.slice(0, 300),
-      parseError: parseError || undefined,
-      rawPreview:
+      return {
+        caseName: caseInfo.name,
+        iteration,
+        status: response.status,
+        ok: response.status >= 200 && response.status < 300 && !parseError,
+        durationMs: Date.now() - startedAt,
+        finishReason: parsed.finishReason,
+        reasoningAnalysis,
+        reasoningContent: parsed.reasoning,
+        reasoningPreview: parsed.reasoning.slice(0, 300),
+        parseError: parseError || undefined,
+        rawPreview:
         response.status >= 200 && response.status < 300 && !parseError
           ? undefined
           : response.raw.slice(0, 500),
@@ -198,6 +199,9 @@ async function main() {
         console.log(
           `${caseInfo.name}\t${i}\tenglishRatio=${row.reasoningAnalysis.englishRatio}\tmixed=${row.reasoningAnalysis.mixed}\tchars=${row.reasoningAnalysis.chars}\tstatus=${row.status}`
         );
+        console.log("reasoning_content:");
+        console.log(row.reasoningContent || "");
+        console.log("---");
       } else {
         console.log(
           `${caseInfo.name}\t${i}\tFAILED\tstatus=${row.status || ""}\terror=${
