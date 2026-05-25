@@ -1,0 +1,232 @@
+{
+  "name": "baseline",
+  "scenario": "after_read_skill_failures",
+  "requestBodyPath": "test_request_bodies/after_read_skill_failures_baseline.json",
+  "status": 200,
+  "ok": true,
+  "durationMs": 12093,
+  "finishReason": "tool_calls",
+  "reasoningAnalysis": {
+    "chars": 407,
+    "cjk": 241,
+    "asciiLetters": 110,
+    "englishRatio": 0.3134,
+    "englishSentenceCount": 0,
+    "englishWordsSample": [
+      "promotionType",
+      "live-overview",
+      "adShow",
+      "kCost",
+      "conversionNumCost",
+      "query_esp_report",
+      "LIVE_OVERVIEW_REPORT"
+    ],
+    "mixed": true
+  },
+  "reasoningPreview": "用户查询直播标准推广最近一周的直播间人气成本数据。我需要识别这是直播概览查询，推广类型为标准推广（promotionType=3），需要查询人气成本相关的指标。根据技能系统，我应该使用live-overview技能。用户提到“直播间人气成本”，这可能对应某个特定指标，比如“adShow1kCost”（千次曝光成本）或“conversionNumCost”（转化成本）。但我需要确认在标准推广下的默认指标列表中包含哪些字段。\n\n让我先读取live-overview技能来了解标准推广的默认指标列表。用户没有指定具体指标，所以应该使用默认列表。时间范围是“最近一周”，需要调用query_esp_report工具。用户未指定维度，默认查账户整体数据。\n\n思考过程：直播标准推广概览查询，使用LIVE_OVERVIEW_REPORT，promotionType=3，时间范围最近7天。数据已准备就绪，正在渲染正文...",
+  "contentPreview": "",
+  "toolCallsPreview": [
+    {
+      "id": "call_13e643004d7948d3813f6d4c",
+      "index": 0,
+      "type": "function",
+      "function": {
+        "name": "query_esp_report",
+        "arguments": ""
+      }
+    },
+    {
+      "id": null,
+      "index": 0,
+      "type": "function",
+      "function": {
+        "name": null,
+        "arguments": "{\"param\": {"
+      }
+    },
+    {
+      "id": null,
+      "index": 0,
+      "type": "function",
+      "function": {
+        "name": null,
+        "arguments": "\"queryType\": \"LIVE_OVERVIEW_REPORT\", \"timeRangeExtractParam\": {"
+      }
+    },
+    {
+      "id": null,
+      "index": 0,
+      "type": "function",
+      "function": {
+        "name": null,
+        "arguments": "\"timeExpr\": \"最近7天\", \"startExpr\": null, \"endExpr\": null}"
+      }
+    },
+    {
+      "id": null,
+      "index": 0,
+      "type": "function",
+      "function": {
+        "name": null,
+        "arguments": ", \"promotionType\": 3, \"selectedColumnList\": [\"costTotal\", \"adShow\", \""
+      }
+    },
+    {
+      "id": null,
+      "index": 0,
+      "type": "function",
+      "function": {
+        "name": null,
+        "arguments": "adItemClick\", \"espClickRatio\", \"adShow1kCost\", \"t0Ord"
+      }
+    },
+    {
+      "id": null,
+      "index": 0,
+      "type": "function",
+      "function": {
+        "name": null,
+        "arguments": "erPaymentAmt\", \"t0OrderCnt\", \"t0Roi\", \"conversionNu"
+      }
+    },
+    {
+      "id": null,
+      "index": 0,
+      "type": "function",
+      "function": {
+        "name": null,
+        "arguments": "m\"], \"whereCondition\": [], \"pageInfo\": {\"currentPage\": 1"
+      }
+    },
+    {
+      "id": null,
+      "index": 0,
+      "type": "function",
+      "function": {
+        "name": null,
+        "arguments": ", \"pageSize\": 10, \"totalCount\": 0}, \"dataAggType\": 1"
+      }
+    },
+    {
+      "id": null,
+      "index": 0,
+      "type": "function",
+      "function": {
+        "name": null,
+        "arguments": ", \"materialType\": 0, \"storewideMaterialType\": 0, \"sortCondition\": []"
+      }
+    }
+  ],
+  "reasoning": "用户查询直播标准推广最近一周的直播间人气成本数据。我需要识别这是直播概览查询，推广类型为标准推广（promotionType=3），需要查询人气成本相关的指标。根据技能系统，我应该使用live-overview技能。用户提到“直播间人气成本”，这可能对应某个特定指标，比如“adShow1kCost”（千次曝光成本）或“conversionNumCost”（转化成本）。但我需要确认在标准推广下的默认指标列表中包含哪些字段。\n\n让我先读取live-overview技能来了解标准推广的默认指标列表。用户没有指定具体指标，所以应该使用默认列表。时间范围是“最近一周”，需要调用query_esp_report工具。用户未指定维度，默认查账户整体数据。\n\n思考过程：直播标准推广概览查询，使用LIVE_OVERVIEW_REPORT，promotionType=3，时间范围最近7天。数据已准备就绪，正在渲染正文...",
+  "content": "",
+  "toolCalls": [
+    {
+      "id": "call_13e643004d7948d3813f6d4c",
+      "index": 0,
+      "type": "function",
+      "function": {
+        "name": "query_esp_report",
+        "arguments": ""
+      }
+    },
+    {
+      "id": null,
+      "index": 0,
+      "type": "function",
+      "function": {
+        "name": null,
+        "arguments": "{\"param\": {"
+      }
+    },
+    {
+      "id": null,
+      "index": 0,
+      "type": "function",
+      "function": {
+        "name": null,
+        "arguments": "\"queryType\": \"LIVE_OVERVIEW_REPORT\", \"timeRangeExtractParam\": {"
+      }
+    },
+    {
+      "id": null,
+      "index": 0,
+      "type": "function",
+      "function": {
+        "name": null,
+        "arguments": "\"timeExpr\": \"最近7天\", \"startExpr\": null, \"endExpr\": null}"
+      }
+    },
+    {
+      "id": null,
+      "index": 0,
+      "type": "function",
+      "function": {
+        "name": null,
+        "arguments": ", \"promotionType\": 3, \"selectedColumnList\": [\"costTotal\", \"adShow\", \""
+      }
+    },
+    {
+      "id": null,
+      "index": 0,
+      "type": "function",
+      "function": {
+        "name": null,
+        "arguments": "adItemClick\", \"espClickRatio\", \"adShow1kCost\", \"t0Ord"
+      }
+    },
+    {
+      "id": null,
+      "index": 0,
+      "type": "function",
+      "function": {
+        "name": null,
+        "arguments": "erPaymentAmt\", \"t0OrderCnt\", \"t0Roi\", \"conversionNu"
+      }
+    },
+    {
+      "id": null,
+      "index": 0,
+      "type": "function",
+      "function": {
+        "name": null,
+        "arguments": "m\"], \"whereCondition\": [], \"pageInfo\": {\"currentPage\": 1"
+      }
+    },
+    {
+      "id": null,
+      "index": 0,
+      "type": "function",
+      "function": {
+        "name": null,
+        "arguments": ", \"pageSize\": 10, \"totalCount\": 0}, \"dataAggType\": 1"
+      }
+    },
+    {
+      "id": null,
+      "index": 0,
+      "type": "function",
+      "function": {
+        "name": null,
+        "arguments": ", \"materialType\": 0, \"storewideMaterialType\": 0, \"sortCondition\": []"
+      }
+    },
+    {
+      "id": null,
+      "index": 0,
+      "type": "function",
+      "function": {
+        "name": null,
+        "arguments": ", \"reportTimeRange\": {\"startDate\": \"\", \"endDate\": \"\""
+      }
+    },
+    {
+      "id": null,
+      "index": 0,
+      "type": "function",
+      "function": {
+        "name": null,
+        "arguments": ", \"startTimeMillis\": 0, \"endTimeMillis\": 0, \"displayText\": \"\", \"text\": \"\"}}}"
+      }
+    }
+  ]
+}

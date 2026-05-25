@@ -1,0 +1,227 @@
+{
+  "name": "hard_prompt_read_skill_guard",
+  "scenario": "after_read_skill_failures",
+  "requestBodyPath": "test_request_bodies/after_read_skill_failures_hard_prompt_read_skill_guard.json",
+  "status": 200,
+  "ok": true,
+  "durationMs": 7616,
+  "finishReason": "tool_calls",
+  "reasoningAnalysis": {
+    "chars": 115,
+    "cjk": 76,
+    "asciiLetters": 25,
+    "englishRatio": 0.2475,
+    "englishSentenceCount": 0,
+    "englishWordsSample": [
+      "live-overview",
+      "promotionType"
+    ],
+    "mixed": true
+  },
+  "reasoningPreview": "用户要查直播标准推广最近一周的直播间人气成本数据，这是个概览类查询，使用live-overview技能。查询需要标准推广promotionType=3，时间范围最近7天。指标包含人气成本相关字段。数据已准备就绪，正在渲染正文...",
+  "contentPreview": "\n\n",
+  "toolCallsPreview": [
+    {
+      "id": "call_6cc39b117af544b2b8a2e2a3",
+      "index": 0,
+      "type": "function",
+      "function": {
+        "name": "query_esp_report",
+        "arguments": ""
+      }
+    },
+    {
+      "id": null,
+      "index": 0,
+      "type": "function",
+      "function": {
+        "name": null,
+        "arguments": "{"
+      }
+    },
+    {
+      "id": null,
+      "index": 0,
+      "type": "function",
+      "function": {
+        "name": null,
+        "arguments": "\"param\": {\"queryType\": \"LIVE_OVERVIEW_REPORT\""
+      }
+    },
+    {
+      "id": null,
+      "index": 0,
+      "type": "function",
+      "function": {
+        "name": null,
+        "arguments": ", \"timeRangeExtractParam\": {\"timeExpr\": \"最近7天\", \"startExpr\": null"
+      }
+    },
+    {
+      "id": null,
+      "index": 0,
+      "type": "function",
+      "function": {
+        "name": null,
+        "arguments": ", \"endExpr\": null}, \"promotionType\": 3"
+      }
+    },
+    {
+      "id": null,
+      "index": 0,
+      "type": "function",
+      "function": {
+        "name": null,
+        "arguments": ", \"selectedColumnList\": [\"costTotal\", \"adShow\", \"adItemClick\", \"espClickRatio\", \"adShow"
+      }
+    },
+    {
+      "id": null,
+      "index": 0,
+      "type": "function",
+      "function": {
+        "name": null,
+        "arguments": "1kCost\", \"t0OrderPaymentAmt\", \"t0OrderCnt\", \""
+      }
+    },
+    {
+      "id": null,
+      "index": 0,
+      "type": "function",
+      "function": {
+        "name": null,
+        "arguments": "t0Roi\", \"conversionNum\"], \"whereCondition\": [], \"pageInfo\": {"
+      }
+    },
+    {
+      "id": null,
+      "index": 0,
+      "type": "function",
+      "function": {
+        "name": null,
+        "arguments": "\"currentPage\": 1, \"pageSize\": 10, \"totalCount\": 0}"
+      }
+    },
+    {
+      "id": null,
+      "index": 0,
+      "type": "function",
+      "function": {
+        "name": null,
+        "arguments": ", \"dataAggType\": 1, \"materialType\": 0, \"storewideMaterialType\": 0"
+      }
+    }
+  ],
+  "reasoning": "用户要查直播标准推广最近一周的直播间人气成本数据，这是个概览类查询，使用live-overview技能。查询需要标准推广promotionType=3，时间范围最近7天。指标包含人气成本相关字段。数据已准备就绪，正在渲染正文...",
+  "content": "\n\n",
+  "toolCalls": [
+    {
+      "id": "call_6cc39b117af544b2b8a2e2a3",
+      "index": 0,
+      "type": "function",
+      "function": {
+        "name": "query_esp_report",
+        "arguments": ""
+      }
+    },
+    {
+      "id": null,
+      "index": 0,
+      "type": "function",
+      "function": {
+        "name": null,
+        "arguments": "{"
+      }
+    },
+    {
+      "id": null,
+      "index": 0,
+      "type": "function",
+      "function": {
+        "name": null,
+        "arguments": "\"param\": {\"queryType\": \"LIVE_OVERVIEW_REPORT\""
+      }
+    },
+    {
+      "id": null,
+      "index": 0,
+      "type": "function",
+      "function": {
+        "name": null,
+        "arguments": ", \"timeRangeExtractParam\": {\"timeExpr\": \"最近7天\", \"startExpr\": null"
+      }
+    },
+    {
+      "id": null,
+      "index": 0,
+      "type": "function",
+      "function": {
+        "name": null,
+        "arguments": ", \"endExpr\": null}, \"promotionType\": 3"
+      }
+    },
+    {
+      "id": null,
+      "index": 0,
+      "type": "function",
+      "function": {
+        "name": null,
+        "arguments": ", \"selectedColumnList\": [\"costTotal\", \"adShow\", \"adItemClick\", \"espClickRatio\", \"adShow"
+      }
+    },
+    {
+      "id": null,
+      "index": 0,
+      "type": "function",
+      "function": {
+        "name": null,
+        "arguments": "1kCost\", \"t0OrderPaymentAmt\", \"t0OrderCnt\", \""
+      }
+    },
+    {
+      "id": null,
+      "index": 0,
+      "type": "function",
+      "function": {
+        "name": null,
+        "arguments": "t0Roi\", \"conversionNum\"], \"whereCondition\": [], \"pageInfo\": {"
+      }
+    },
+    {
+      "id": null,
+      "index": 0,
+      "type": "function",
+      "function": {
+        "name": null,
+        "arguments": "\"currentPage\": 1, \"pageSize\": 10, \"totalCount\": 0}"
+      }
+    },
+    {
+      "id": null,
+      "index": 0,
+      "type": "function",
+      "function": {
+        "name": null,
+        "arguments": ", \"dataAggType\": 1, \"materialType\": 0, \"storewideMaterialType\": 0"
+      }
+    },
+    {
+      "id": null,
+      "index": 0,
+      "type": "function",
+      "function": {
+        "name": null,
+        "arguments": ", \"sortCondition\": [], \"reportTimeRange\": {\"startDate\": \"\""
+      }
+    },
+    {
+      "id": null,
+      "index": 0,
+      "type": "function",
+      "function": {
+        "name": null,
+        "arguments": ", \"endDate\": \"\", \"startTimeMillis\": 0, \"endTimeMillis\": 0, \"displayText\": \"\", \"text\": \"\"}}}"
+      }
+    }
+  ]
+}

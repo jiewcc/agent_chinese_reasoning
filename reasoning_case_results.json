@@ -1,0 +1,12 @@
+[
+  {
+    "name": "baseline",
+    "scenario": "after_read_skill_failures",
+    "requestBodyPath": "test_request_bodies/after_read_skill_failures_baseline.json"
+  },
+  {
+    "name": "chinese_cognitive_few_shot",
+    "scenario": "after_read_skill_failures",
+    "requestBodyPath": "test_request_bodies/after_read_skill_failures_chinese_cognitive_few_shot.json"
+  }
+]
