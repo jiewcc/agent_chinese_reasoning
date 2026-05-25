@@ -1,0 +1,538 @@
+{
+  "apiUrl": "http://public-wlf2-ge131-kce-node29.idchb2az2.hb2.kwaidc.com:50150/v1/chat/completions",
+  "repeat": 20,
+  "case": {
+    "name": "change_2_3",
+    "changes": [
+      2,
+      3
+    ],
+    "requestBodyPath": "test_request_bodies/after_read_skill_failures_baseline_cases/change_2_3.json",
+    "changeDescriptions": [
+      {
+        "name": "user_json_instruction_chinese",
+        "description": "将第二轮用户消息中的 JSON 输出格式说明从英文改成中文。"
+      },
+      {
+        "name": "reasoning_few_shot_chinese",
+        "description": "将 skill 读取失败后的三段 assistant reasoning_content 示例从英文改成中文。"
+      }
+    ]
+  },
+  "summary": {
+    "okCount": 20,
+    "failedCount": 0,
+    "minEnglishRatio": 0,
+    "maxEnglishRatio": 0.597,
+    "avgEnglishRatio": 0.3533,
+    "mixedCount": 19
+  },
+  "results": [
+    {
+      "caseName": "change_2_3",
+      "iteration": 1,
+      "status": 200,
+      "ok": true,
+      "durationMs": 2420,
+      "finishReason": "tool_calls",
+      "reasoningAnalysis": {
+        "chars": 301,
+        "cjk": 121,
+        "asciiLetters": 96,
+        "chineseRatio": 0.5576,
+        "englishRatio": 0.4424,
+        "englishSentenceCount": 2,
+        "englishWordsSample": [
+          "promotionType",
+          "skill",
+          "live-overview",
+          "live-metrics-standard",
+          "queryType",
+          "LIVE_REPORT",
+          "LIVE_CAMPAIGN_REPORT"
+        ],
+        "mixed": true
+      },
+      "reasoning_content": "用户想要查询\"直播标准推广最近一周的直播间人气成本数据\"。让我分析一下：\n\n1. **标的物**：直播\n2. **推广类型**：标准推广（promotionType=3）\n3. **时间范围**：最近一周/最近7天\n4. **指标**：人气成本\n\n根据 skill 列表，我需要读取相关的 skill 文件来了解如何构建查询参数。\n\n- `live-overview`：直播概览数据查询编排\n- `live-metrics-standard`：标准推广直播指标映射，仅适用于 queryType=LIVE_REPORT 或 LIVE_CAMPAIGN_REPORT\n\n让我先读取这些 skill 文件。",
+      "contentPreview": ""
+    },
+    {
+      "caseName": "change_2_3",
+      "iteration": 2,
+      "status": 200,
+      "ok": true,
+      "durationMs": 1284,
+      "finishReason": "tool_calls",
+      "reasoningAnalysis": {
+        "chars": 134,
+        "cjk": 79,
+        "asciiLetters": 31,
+        "chineseRatio": 0.7182,
+        "englishRatio": 0.2818,
+        "englishSentenceCount": 0,
+        "englishWordsSample": [
+          "live-overview",
+          "live-metrics-standard"
+        ],
+        "mixed": true
+      },
+      "reasoning_content": " 用户查询的是\"直播标准推广最近一周的直播间人气成本数据\"。根据技能列表，应该使用：- `live-overview` 技能进行直播概览查询- 但用户指定了\"标准推广\"，所以需要使用 `live-metrics-standard` 技能先读取技能文件了解具体参数配置。",
+      "contentPreview": ""
+    },
+    {
+      "caseName": "change_2_3",
+      "iteration": 3,
+      "status": 200,
+      "ok": true,
+      "durationMs": 836,
+      "finishReason": "tool_calls",
+      "reasoningAnalysis": {
+        "chars": 49,
+        "cjk": 45,
+        "asciiLetters": 0,
+        "chineseRatio": 1,
+        "englishRatio": 0,
+        "englishSentenceCount": 0,
+        "englishWordsSample": [],
+        "mixed": false
+      },
+      "reasoning_content": "用户想查询直播标准推广最近一周的直播间人气成本数据。\n\n让我读取相关技能文件来获取正确的查询参数。",
+      "contentPreview": " "
+    },
+    {
+      "caseName": "change_2_3",
+      "iteration": 4,
+      "status": 200,
+      "ok": true,
+      "durationMs": 2288,
+      "finishReason": "tool_calls",
+      "reasoningAnalysis": {
+        "chars": 323,
+        "cjk": 122,
+        "asciiLetters": 144,
+        "chineseRatio": 0.4586,
+        "englishRatio": 0.5414,
+        "englishSentenceCount": 0,
+        "englishWordsSample": [
+          "skill",
+          "promotionType",
+          "live-overview",
+          "live-metrics-standard",
+          "live-metrics-standard-campaign-",
+          "live-metrics-standard-creative"
+        ],
+        "mixed": true
+      },
+      "reasoning_content": "用户想要查询直播标准推广最近一周的直播间人气成本数据。让我先读取相关的skill文件来了解正确的字段和参数。用户明确提到了：\n1. 标的：直播\n2. 推广类型：标准推广（promotionType=3）\n3. 时间范围：最近一周\n4. 指标：直播间人气成本\n\n我需要读取live-overview和live-metrics-standard来了解具体应该使用哪些字段。等等，先查看skill列表中的名称：- live-overview\n- live-metrics-standard\n- live-metrics-standard-campaign- live-metrics-standard-creative\n\n让我读取正确的skill文件。",
+      "contentPreview": "用户查询直播标准推广的直播间人气成本数据，需要读取直播概览skill获取正确的queryType和selectedColumnList。"
+    },
+    {
+      "caseName": "change_2_3",
+      "iteration": 5,
+      "status": 200,
+      "ok": true,
+      "durationMs": 947,
+      "finishReason": "tool_calls",
+      "reasoningAnalysis": {
+        "chars": 76,
+        "cjk": 52,
+        "asciiLetters": 17,
+        "chineseRatio": 0.7536,
+        "englishRatio": 0.2464,
+        "englishSentenceCount": 0,
+        "englishWordsSample": [
+          "skill",
+          "live-overview"
+        ],
+        "mixed": true
+      },
+      "reasoning_content": "用户想要查询最近一周的直播标准推广数据，关注人气成本指标。\n\n根据skill列表，我需要读取live-overview技能来了解直播概览查询的参数配置。",
+      "contentPreview": ""
+    },
+    {
+      "caseName": "change_2_3",
+      "iteration": 6,
+      "status": 200,
+      "ok": true,
+      "durationMs": 1475,
+      "finishReason": "tool_calls",
+      "reasoningAnalysis": {
+        "chars": 171,
+        "cjk": 80,
+        "asciiLetters": 58,
+        "chineseRatio": 0.5797,
+        "englishRatio": 0.4203,
+        "englishSentenceCount": 1,
+        "englishWordsSample": [
+          "skill",
+          "live-overview",
+          "promotionType",
+          "LIVE_OVERVIEW_REPORT"
+        ],
+        "mixed": true
+      },
+      "reasoning_content": "用户想查询\"直播标准推广\"最近一周的\"直播间人气成本\"数据。\n\n根据skill列表，我需要：\n1. 先读取live-overview skill了解概览查询方式\n2. 用户问的是\"标准推广\"，promotionType应该是3\n3. 查询类型是直播概览 LIVE_OVERVIEW_REPORT\n\n让我先读取skill文件获取正确的参数配置。",
+      "contentPreview": " "
+    },
+    {
+      "caseName": "change_2_3",
+      "iteration": 7,
+      "status": 200,
+      "ok": true,
+      "durationMs": 1525,
+      "finishReason": "tool_calls",
+      "reasoningAnalysis": {
+        "chars": 150,
+        "cjk": 74,
+        "asciiLetters": 41,
+        "chineseRatio": 0.6435,
+        "englishRatio": 0.3565,
+        "englishSentenceCount": 2,
+        "englishWordsSample": [
+          "skill",
+          "live-overview",
+          "live-metrics-standard"
+        ],
+        "mixed": true
+      },
+      "reasoning_content": "用户想要查询\"直播标准推广\"最近一周的\"直播间人气成本\"数据。\n\n根据 skill 列表，我需要读取：\n- `live-overview` - 直播概览数据查询编排\n- `live-metrics-standard` - 标准推广直播指标映射\n\n让我先读取这些 skill 文件来获取正确的参数设置。",
+      "contentPreview": ""
+    },
+    {
+      "caseName": "change_2_3",
+      "iteration": 8,
+      "status": 200,
+      "ok": true,
+      "durationMs": 918,
+      "finishReason": "tool_calls",
+      "reasoningAnalysis": {
+        "chars": 64,
+        "cjk": 51,
+        "asciiLetters": 5,
+        "chineseRatio": 0.9107,
+        "englishRatio": 0.0893,
+        "englishSentenceCount": 1,
+        "englishWordsSample": [
+          "skill"
+        ],
+        "mixed": true
+      },
+      "reasoning_content": "用户询问的是\"直播标准推广\"最近一周的直播间人气成本数据。\n\n让我先读取相关的 skill 文件来了解具体的查询参数和指标映射。",
+      "contentPreview": ""
+    },
+    {
+      "caseName": "change_2_3",
+      "iteration": 9,
+      "status": 200,
+      "ok": true,
+      "durationMs": 2248,
+      "finishReason": "tool_calls",
+      "reasoningAnalysis": {
+        "chars": 227,
+        "cjk": 115,
+        "asciiLetters": 55,
+        "chineseRatio": 0.6765,
+        "englishRatio": 0.3235,
+        "englishSentenceCount": 3,
+        "englishWordsSample": [
+          "skill",
+          "queryType",
+          "live-overview",
+          "live-metrics-standard"
+        ],
+        "mixed": true
+      },
+      "reasoning_content": "用户想要查询\"直播标准推广最近一周的直播间人气成本数据\"。我需要：\n\n1. 确定标的物：直播\n2. 确定推广场景：标准推广\n3. 时间范围：最近一周（最近7天）\n4. 指标：直播间人气成本\n\n首先我需要读取 skill 文件来确定正确的 queryType 和字段名。根据 skill 列表，我需要读取：\n- live-overview（直播概览）\n- live-metrics-standard（标准推广直播指标）\n\n让我先读取这些 skill 文件。",
+      "contentPreview": "用户查询直播标准推广最近一周的直播间人气成本数据。我需要先读取相关 skill 文件获取正确的查询参数。"
+    },
+    {
+      "caseName": "change_2_3",
+      "iteration": 10,
+      "status": 200,
+      "ok": true,
+      "durationMs": 1902,
+      "finishReason": "tool_calls",
+      "reasoningAnalysis": {
+        "chars": 249,
+        "cjk": 131,
+        "asciiLetters": 64,
+        "chineseRatio": 0.6718,
+        "englishRatio": 0.3282,
+        "englishSentenceCount": 2,
+        "englishWordsSample": [
+          "queryType",
+          "LIVE_OVERVIEW_REPORT",
+          "LIVE_REPORT",
+          "promotionType",
+          "skill"
+        ],
+        "mixed": true
+      },
+      "reasoning_content": "用户询问的是\"直播标准推广最近一周的直播间人气成本数据\"。\n\n根据技能列表，我需要：\n1. 查询直播标准推广的数据\n2. 时间范围：最近一周\n3. 指标：人气成本\n\n让我先读取直播相关技能文件来确定正确的queryType和指标字段。\n\n用户明确提到\"直播标准推广\"，所以我应该使用：\n- queryType: LIVE_OVERVIEW_REPORT（直播概览）或 LIVE_REPORT（直播明细）\n- promotionType: 3（标准推广）\n\n让我先读取skill文件来确定正确的参数。",
+      "contentPreview": ""
+    },
+    {
+      "caseName": "change_2_3",
+      "iteration": 11,
+      "status": 200,
+      "ok": true,
+      "durationMs": 1659,
+      "finishReason": "tool_calls",
+      "reasoningAnalysis": {
+        "chars": 154,
+        "cjk": 71,
+        "asciiLetters": 46,
+        "chineseRatio": 0.6068,
+        "englishRatio": 0.3932,
+        "englishSentenceCount": 2,
+        "englishWordsSample": [
+          "skill",
+          "live-overview",
+          "live-metrics-standard"
+        ],
+        "mixed": true
+      },
+      "reasoning_content": "用户想查询的是\"标准推广\"直播，最近一周的数据。根据 skill 列表，我需要读取相关 skill 文件来获取正确的参数设置：\n\n1. `live-overview` - 直播概览数据查询编排\n2. `live-metrics-standard` - 标准推广直播指标映射\n\n让我读取这些 skill 文件。",
+      "contentPreview": " 数据已准备就绪，正在渲染正文... "
+    },
+    {
+      "caseName": "change_2_3",
+      "iteration": 12,
+      "status": 200,
+      "ok": true,
+      "durationMs": 1585,
+      "finishReason": "tool_calls",
+      "reasoningAnalysis": {
+        "chars": 180,
+        "cjk": 93,
+        "asciiLetters": 66,
+        "chineseRatio": 0.5849,
+        "englishRatio": 0.4151,
+        "englishSentenceCount": 1,
+        "englishWordsSample": [
+          "skill",
+          "live-overview",
+          "live-metrics-standard",
+          "live-condition-mapping"
+        ],
+        "mixed": true
+      },
+      "reasoning_content": "用户要求查询直播标准推广最近一周的直播间人气成本数据。我需要先读取skill文件来确认正确的参数。从skill列表看：- live-overview: 直播概览数据查询编排- live-metrics-standard: 标准推广直播指标映射- live-condition-mapping: 直播明细场景过滤条件字段映射让我尝试使用正确的参数读取skill。",
+      "contentPreview": " "
+    },
+    {
+      "caseName": "change_2_3",
+      "iteration": 13,
+      "status": 200,
+      "ok": true,
+      "durationMs": 1633,
+      "finishReason": "stop",
+      "reasoningAnalysis": {
+        "chars": 296,
+        "cjk": 112,
+        "asciiLetters": 105,
+        "chineseRatio": 0.5161,
+        "englishRatio": 0.4839,
+        "englishSentenceCount": 4,
+        "englishWordsSample": [
+          "skill",
+          "live-overview",
+          "live-metrics-standard",
+          "live-condition-mapping",
+          "queryType",
+          "tool_call_end",
+          "tool_calls_section_end"
+        ],
+        "mixed": true
+      },
+      "reasoning_content": "用户想查询\"直播标准推广最近一周的直播间人气成本数据\"。\n\n根据 skill 列表：\n- `live-overview` - 直播概览数据查询编排\n- `live-metrics-standard` - 标准推广直播指标映射\n- `live-condition-mapping` - 直播明细场景过滤条件字段映射\n\n我需要先读取 skill 文件来了解：\n1. 标准推广直播的 queryType 是什么\n2. 人气成本对应的字段名是什么\n3. 需要哪些参数\n\n让我读取相关的 skill 文件。\" ) }<|tool_call_end|><|tool_calls_section_end|>",
+      "contentPreview": ""
+    },
+    {
+      "caseName": "change_2_3",
+      "iteration": 14,
+      "status": 200,
+      "ok": true,
+      "durationMs": 1706,
+      "finishReason": "tool_calls",
+      "reasoningAnalysis": {
+        "chars": 192,
+        "cjk": 97,
+        "asciiLetters": 58,
+        "chineseRatio": 0.6258,
+        "englishRatio": 0.3742,
+        "englishSentenceCount": 4,
+        "englishWordsSample": [
+          "skill",
+          "live-overview",
+          "live-metrics-simple",
+          "live-metrics-standard"
+        ],
+        "mixed": true
+      },
+      "reasoning_content": "用户询问的是\"直播标准推广\"最近一周的\"直播间人气成本\"数据。\n\n根据skill列表：\n- live-overview: 直播概览数据查询编排，支持全部/全站/标准/极简四种推广类型\n- live-metrics-simple: 极简推广直播指标映射\n- live-metrics-standard: 标准推广直播指标映射\n\n我需要先读取 skill 文件来确定正确的字段和参数配置。",
+      "contentPreview": " "
+    },
+    {
+      "caseName": "change_2_3",
+      "iteration": 15,
+      "status": 200,
+      "ok": true,
+      "durationMs": 2194,
+      "finishReason": "tool_calls",
+      "reasoningAnalysis": {
+        "chars": 206,
+        "cjk": 93,
+        "asciiLetters": 54,
+        "chineseRatio": 0.6327,
+        "englishRatio": 0.3673,
+        "englishSentenceCount": 4,
+        "englishWordsSample": [
+          "promotionType",
+          "skill",
+          "live-overview",
+          "live-metrics-standard"
+        ],
+        "mixed": true
+      },
+      "reasoning_content": "用户想查询\"直播标准推广最近一周的直播间人气成本数据\"。\n\n关键要素：\n1. 标的物：直播\n2. 推广类型：标准推广（promotionType=3）\n3. 时间范围：最近一周/最近7天\n4. 指标：人气成本\n\n需要读取 skill 文件：\n1. live-overview - 直播概览数据查询编排\n2. live-metrics-standard - 标准推广直播指标映射\n\n让我读取这些 skill 文件。",
+      "contentPreview": " 用户询问的是直播标准推广最近一周的人气成本数据，我需要读取相关 skill 文件来确定正确的查询参数和字段映射。"
+    },
+    {
+      "caseName": "change_2_3",
+      "iteration": 16,
+      "status": 200,
+      "ok": true,
+      "durationMs": 1693,
+      "finishReason": "tool_calls",
+      "reasoningAnalysis": {
+        "chars": 184,
+        "cjk": 104,
+        "asciiLetters": 39,
+        "chineseRatio": 0.7273,
+        "englishRatio": 0.2727,
+        "englishSentenceCount": 2,
+        "englishWordsSample": [
+          "live-overview",
+          "skill",
+          "queryType",
+          "promotionType"
+        ],
+        "mixed": true
+      },
+      "reasoning_content": " 让我重新分析：\n\n用户说\"查直播标准推广最近一周的直播间人气成本数据\"\n\n需要：\n1. 先读取 live-overview skill\n2. 确认标准直播推广应该用哪个 queryType 和 promotionType\n3. 确认\"直播间人气成本\"对应的指标字段名\n\n用户明确要求的是\"标准推广\"，不是\"全站推广\"。\n\n技能文件读取都失败了，让我继续用工具来查询。",
+      "contentPreview": " 数据已准备就绪，正在渲染正文... "
+    },
+    {
+      "caseName": "change_2_3",
+      "iteration": 17,
+      "status": 200,
+      "ok": true,
+      "durationMs": 956,
+      "finishReason": "tool_calls",
+      "reasoningAnalysis": {
+        "chars": 81,
+        "cjk": 46,
+        "asciiLetters": 25,
+        "chineseRatio": 0.6479,
+        "englishRatio": 0.3521,
+        "englishSentenceCount": 2,
+        "englishWordsSample": [
+          "ROI",
+          "skill",
+          "live-overview"
+        ],
+        "mixed": true
+      },
+      "reasoning_content": "用户想查询最近一周的直播标准推广 ROI 和人气成本数据。我需要读取直播概览 skill 文件来获取正确的参数。让我读取 live-overview skill。",
+      "contentPreview": " "
+    },
+    {
+      "caseName": "change_2_3",
+      "iteration": 18,
+      "status": 200,
+      "ok": true,
+      "durationMs": 1806,
+      "finishReason": "tool_calls",
+      "reasoningAnalysis": {
+        "chars": 165,
+        "cjk": 71,
+        "asciiLetters": 60,
+        "chineseRatio": 0.542,
+        "englishRatio": 0.458,
+        "englishSentenceCount": 1,
+        "englishWordsSample": [
+          "skill",
+          "live-overview",
+          "live-metrics-standard",
+          "queryType",
+          "LIVE_REPORT"
+        ],
+        "mixed": true
+      },
+      "reasoning_content": "用户明确问\"直播标准推广\"，根据 skill 列表：- `live-overview` - 直播概览数据查询编排：支持全部/全站/标准/极简四种推广类型- `live-metrics-standard` - 标准推广直播指标映射，仅适用于 queryType=LIVE_REPORT我需要先读取 skill 文件来确定正确的参数。",
+      "contentPreview": " 用户询问直播标准推广的直播间人气成本数据。我需要先读取相关 skill 文件确定正确的指标字段。"
+    },
+    {
+      "caseName": "change_2_3",
+      "iteration": 19,
+      "status": 200,
+      "ok": true,
+      "durationMs": 2779,
+      "finishReason": "tool_calls",
+      "reasoningAnalysis": {
+        "chars": 424,
+        "cjk": 133,
+        "asciiLetters": 197,
+        "chineseRatio": 0.403,
+        "englishRatio": 0.597,
+        "englishSentenceCount": 4,
+        "englishWordsSample": [
+          "promotionType",
+          "live-overview",
+          "skill",
+          "queryType",
+          "LIVE_OVERVIEW_REPORT",
+          "costTotal",
+          "adShow",
+          "adItemClick",
+          "espClickRatio",
+          "kCost",
+          "OrderPaymentAmt",
+          "OrderCnt",
+          "Roi",
+          "conversionNum",
+          "OrderCntCost",
+          "conversionNumCost"
+        ],
+        "mixed": true
+      },
+      "reasoning_content": "用户要查询\"直播标准推广最近一周的直播间人气成本数据\"。\n\n让我拆解需求：\n1. 标的物：直播（直播间）\n2. 推广类型：标准推广（promotionType=3）\n3. 时间范围：最近一周/最近7天\n4. 指标：人气成本\n\n根据已读取的live-overview skill，我知道：\n- queryType: LIVE_OVERVIEW_REPORT（直播整体概览）\n- promotionType: 3（标准推广）\n- 对于标准推广，默认指标包括：costTotal、adShow、adItemClick、espClickRatio、adShow1kCost、t0OrderPaymentAmt、t0OrderCnt、t0Roi、conversionNum\n\n人气成本在直播场景下，可能对应：\n- t0OrderCntCost（当日总订单成本）\n- conversionNumCost（转化成本）\n\n我需要先读取 skill 文件确认字段名。",
+      "contentPreview": " 数据已准备就绪，正在渲染正文... "
+    },
+    {
+      "caseName": "change_2_3",
+      "iteration": 20,
+      "status": 200,
+      "ok": true,
+      "durationMs": 1568,
+      "finishReason": "tool_calls",
+      "reasoningAnalysis": {
+        "chars": 162,
+        "cjk": 84,
+        "asciiLetters": 40,
+        "chineseRatio": 0.6774,
+        "englishRatio": 0.3226,
+        "englishSentenceCount": 3,
+        "englishWordsSample": [
+          "live-overview",
+          "skill",
+          "promotionType"
+        ],
+        "mixed": true
+      },
+      "reasoning_content": "用户想查\"直播标准推广最近一周的直播间人气成本数据\"。\n\n我需要：\n1. 先读取 live-overview skill 获取直播概览的查询参数规则\n2. 用户明确说\"标准推广\"，所以 promotionType=3\n3. 查询指标包括\"人气成本\"，我需要看 skill 文件中对应的字段名\n\n让我先读取 skill 文件。",
+      "contentPreview": " 数据已准备就绪，正在渲染正文... "
+    }
+  ]
+}
